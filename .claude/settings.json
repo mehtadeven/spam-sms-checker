@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc -l /c/Users/deven/Downloads/ONE/*.py /c/Users/deven/Downloads/ONE/tests/*.py)",
+      "Bash(python -c \"import sys, sklearn, pandas, numpy; print\\(sys.version\\); print\\('sklearn', sklearn.__version__\\); print\\('pandas', pandas.__version__\\); print\\('numpy', numpy.__version__\\)\")",
+      "Bash(python -m pip list)",
+      "Bash(python -c \"import streamlit, sys; print\\(sys.version\\); print\\('streamlit', streamlit.__version__\\)\")",
+      "Bash(python -c \"import streamlit; print\\('streamlit', streamlit.__version__\\)\")",
+      "Bash(python -c \"import plotly; print\\('plotly', plotly.__version__\\)\")",
+      "Bash(python -c \"import flask, joblib; print\\('flask', flask.__version__, 'joblib', joblib.__version__\\)\")",
+      "Bash(python -c \"import pydantic; print\\('pydantic', pydantic.VERSION\\)\")",
+      "Bash(python -c \"import fastapi; print\\('fastapi', fastapi.__version__\\)\")",
+      "Bash(python -c \"import tomllib, dataclasses, logging, jsonschema\")",
+      "Bash(python -I -)",
+      "Bash(cd \"c:/Users/deven/Downloads/ONE\" *)",
+      "Read(//c/Users/deven/AppData/Local/Programs/Python/Python315/Lib/site-packages/streamlit/**)",
+      "Bash(npm --version)",
+      "Bash(git --version)",
+      "Bash(gh --version)",
+      "Bash(pip install *)",
+      "Bash(pip index *)",
+      "Bash(python -c \"import PIL; print\\('PIL ok'\\)\")",
+      "Bash(python -I scripts/make_banner.py)",
+      "Bash(git init *)",
+      "Bash(git config *)",
+      "Bash(git symbolic-ref *)",
+      "Bash(git add *)",
+      "Bash(grep -Ei \"\\\\.env$|\\\\.db|node_modules|\\\\.joblib|metrics\\\\.json\")",
+      "Bash(git commit *)"
+    ]
+  }
+}

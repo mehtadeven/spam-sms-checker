@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+
+# Local database (WAL/sidecar files too)
+*.db
+*.db-wal
+*.db-shm
+
+# Secrets / env
+.env
+backend/.env
+
+# Node / frontend build output
+node_modules/
+frontend/dist/
+frontend/.vite/
+*.local
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Model artifacts are regenerable; keep the folder via .gitkeep, ignore weights
+models/*.joblib
+models/metrics.json
+
+# Legacy demo kept locally
+_legacy/
