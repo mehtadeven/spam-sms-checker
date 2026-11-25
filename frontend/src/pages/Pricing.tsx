@@ -48,20 +48,20 @@ export function Pricing() {
           <div className="text-3xl font-extrabold">$0<span className="text-base font-normal text-muted"> / 14 days</span></div>
           <ul className="space-y-1 text-sm">{FEATURES.free.map((f) => <li key={f}>✓ {f}</li>)}</ul>
           {!user && <button className="btn-ghost w-full" onClick={() => navigate("/register")}>Start free trial</button>}
-          {user && user.plan !== "pro" && <span className="chip bg-blue-50 text-brand">Current plan</span>}
+          {user && user.plan !== "pro" && <span className="chip bg-brand/10 text-brand">Current plan</span>}
         </div>
-        <div className="card space-y-3 border-brand ring-1 ring-blue-100">
+        <div className="card space-y-3 border-brand ring-1 ring-brand/20">
           <h2 className="text-lg font-bold">Pro</h2>
           <div className="text-3xl font-extrabold">$8<span className="text-base font-normal text-muted"> / month</span></div>
           <ul className="space-y-1 text-sm">{FEATURES.pro.map((f) => <li key={f}>✓ {f}</li>)}</ul>
           {user?.plan === "pro" ? (
-            <span className="chip bg-emerald-50 text-emerald-700">Active subscription</span>
+            <span className="chip bg-brand/10 text-emerald-300">Active subscription</span>
           ) : (
             <button className="btn-primary w-full" onClick={choose} disabled={busy}>{busy ? "Working…" : "Upgrade to Pro"}</button>
           )}
         </div>
       </div>
-      {note && <p className="mx-auto max-w-2xl rounded-xl bg-amber-50 p-4 text-center text-sm text-amber-800">{note}</p>}
+      {note && <p className="mx-auto max-w-2xl rounded-xl bg-warn/10 p-4 text-center text-sm text-amber-200">{note}</p>}
     </div>
   );
 }

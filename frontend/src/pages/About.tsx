@@ -18,11 +18,11 @@ export function About() {
         ))}
       </ol>
 
-      <pre className="overflow-x-auto rounded-xl bg-ink p-4 text-xs text-white">{`SMS → TF-IDF + Naive Bayes → learned clues
+      <pre className="overflow-x-auto rounded-xl border border-line bg-console p-4 font-mono text-xs text-emerald-200">{`SMS → TF-IDF + Naive Bayes → learned clues
      ↘ Local safety checks → warning signals
      → Verdict (SPAM / HAM / UNSURE) + inbox analytics`}</pre>
 
-      <div className="rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm">
+      <div className="rounded-xl border border-warn/40 bg-warn/10 p-4 text-sm">
         The bundled model trains on a small demo corpus. Scammers evolve quickly: predictions and signals are guidance, not proof that a message is safe or malicious.
       </div>
     </div>

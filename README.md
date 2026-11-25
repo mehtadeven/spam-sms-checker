@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/banner.png" alt="SpamSMS Guardian — offline-first SMS spam & phishing checker" width="100%" />
+  <a href="https://mehtadeven.github.io/spam-sms-checker/"><img src="docs/readme/banner.png" alt="SpamSMS Guardian — offline-first SMS spam &amp; phishing checker. Try the live demo." width="100%" /></a>
 </p>
 
 <h1 align="center">🛡️ SpamSMS Guardian</h1>
@@ -37,6 +37,10 @@
 ---
 
 ## 🌐 Live demo
+
+[![Screenshot of the SpamSMS Guardian live demo](docs/readme/demo.png)](https://mehtadeven.github.io/spam-sms-checker/)
+
+**Design:** a dark *security console* theme — near-black greens, emerald for safe, rose for danger, amber for caution, Space Grotesk + IBM Plex Mono — applied across the whole React app through the Tailwind theme.
 
 **[mehtadeven.github.io/spam-sms-checker](https://mehtadeven.github.io/spam-sms-checker/)** — the real React UI, built in *static demo* mode (`VITE_STATIC_DEMO=true`). There is no server: [`scripts/export_web_model.py`](scripts/export_web_model.py) exports the trained TF-IDF + Naive Bayes model to `frontend/public/model.json`, and [`frontend/src/lib/localModel.ts`](frontend/src/lib/localModel.ts) reproduces `predict_message()` — verdict, spam estimate, learned clues and threat signals — in the browser. Accounts, inbox scan and billing need the FastAPI backend, so the demo hides them.
 

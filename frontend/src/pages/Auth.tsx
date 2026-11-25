@@ -44,7 +44,7 @@ export function Auth({ mode }: { mode: "login" | "register" }) {
             <input id="password" type="password" className="input" value={password} onChange={(e) => setPassword(e.target.value)} required minLength={8} autoComplete={mode === "login" ? "current-password" : "new-password"} />
             {mode === "register" && <p className="mt-1 text-xs text-muted">At least 8 characters.</p>}
           </div>
-          {error && <div className="rounded-lg bg-red-50 p-3 text-sm text-red-700">{error}</div>}
+          {error && <div className="rounded-lg bg-danger/10 p-3 text-sm text-rose-300">{error}</div>}
           <button className="btn-primary w-full" disabled={busy}>{busy ? "Please wait…" : mode === "login" ? "Sign in" : "Create account"}</button>
         </form>
         <p className="text-center text-sm text-muted">

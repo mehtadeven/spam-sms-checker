@@ -1,9 +1,9 @@
 import type { AnalyzeResponse } from "../lib/types";
 
 const STYLES: Record<string, { box: string; title: string; icon: string }> = {
-  SPAM: { box: "border-red-200 bg-red-50", title: "Likely spam", icon: "🚨" },
-  HAM: { box: "border-emerald-200 bg-emerald-50", title: "Likely legitimate", icon: "✅" },
-  UNSURE: { box: "border-amber-200 bg-amber-50", title: "Not sure — verify manually", icon: "❓" },
+  SPAM: { box: "border-danger/40 bg-danger/10", title: "Likely spam", icon: "🚨" },
+  HAM: { box: "border-brand/40 bg-brand/10", title: "Likely legitimate", icon: "✅" },
+  UNSURE: { box: "border-warn/40 bg-warn/10", title: "Not sure — verify manually", icon: "❓" },
 };
 
 export function VerdictCard({ result }: { result: AnalyzeResponse }) {
@@ -22,11 +22,11 @@ export function VerdictCard({ result }: { result: AnalyzeResponse }) {
               Model spam estimate: <span className="font-semibold">{pct}%</span>
             </div>
           </div>
-          <span className="chip bg-white/70 text-ink">{result.label}</span>
+          <span className="chip bg-black/30 text-ink">{result.label}</span>
         </div>
-        <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-white/60">
+        <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-black/40">
           <div
-            className={result.label === "SPAM" ? "h-full bg-red-500" : result.label === "HAM" ? "h-full bg-emerald-500" : "h-full bg-amber-400"}
+            className={result.label === "SPAM" ? "h-full bg-danger" : result.label === "HAM" ? "h-full bg-brand" : "h-full bg-warn"}
             style={{ width: `${pct}%` }}
           />
         </div>
@@ -46,7 +46,7 @@ export function VerdictCard({ result }: { result: AnalyzeResponse }) {
           ) : (
             <ul className="space-y-2">
               {result.signals.map((sig, i) => (
-                <li key={i} className="rounded-xl border border-slate-200 p-3">
+                <li key={i} className="rounded-xl border border-line p-3">
                   <div className="flex items-center gap-2 font-semibold">
                     <span>{sig.severity === "high" ? "🔴" : "🟠"}</span>
                     {sig.title}
@@ -68,7 +68,7 @@ export function VerdictCard({ result }: { result: AnalyzeResponse }) {
           ) : (
             <div className="flex flex-wrap gap-2">
               {result.drivers.map((d, i) => (
-                <span key={i} className="chip bg-blue-50 text-brand">
+                <span key={i} className="chip bg-brand/10 text-brand">
                   {d.word}
                 </span>
               ))}
@@ -81,7 +81,7 @@ export function VerdictCard({ result }: { result: AnalyzeResponse }) {
       </div>
 
       {result.label === "SPAM" && (
-        <div className="rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm">
+        <div className="rounded-xl border border-warn/40 bg-warn/10 p-4 text-sm">
           Do not reply, open links, or share passwords / one-time codes. Verify the sender through a known official channel.
         </div>
       )}

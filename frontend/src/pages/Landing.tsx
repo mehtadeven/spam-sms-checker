@@ -38,9 +38,11 @@ export function Landing() {
   return (
     <div className="space-y-8">
       <section className="text-center">
-        <p className="eyebrow text-xs font-bold uppercase tracking-widest text-brand">Personal SMS security</p>
-        <h1 className="mx-auto mt-2 max-w-3xl text-4xl font-extrabold leading-tight md:text-5xl">
-          A second look before you tap.
+        <p className="eyebrow inline-flex items-center gap-2 rounded-full border border-brand/30 bg-brand/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand">
+          <span className="h-2 w-2 animate-pulse rounded-full bg-brand" /> Personal SMS security
+        </p>
+        <h1 className="mx-auto mt-4 max-w-3xl text-4xl font-bold leading-tight tracking-tight md:text-6xl">
+          A second look <span className="bg-gradient-to-r from-emerald-300 to-teal-200 bg-clip-text text-transparent">before you tap.</span>
         </h1>
         <p className="mx-auto mt-3 max-w-xl text-muted">
           Paste a suspicious text and get an explainable verdict — offline, with no third-party scanning service.
@@ -63,7 +65,7 @@ export function Landing() {
         </div>
         <div className="flex flex-wrap gap-2 pt-1">
           {SAMPLES.map(([name, sample]) => (
-            <button key={name} className="chip border border-slate-200 bg-white text-ink hover:bg-slate-50" onClick={() => { setText(sample); void analyze(sample); }}>
+            <button key={name} className="chip border border-line bg-panel text-ink hover:bg-panel2" onClick={() => { setText(sample); void analyze(sample); }}>
               Try: {name}
             </button>
           ))}
@@ -71,7 +73,7 @@ export function Landing() {
       </section>
 
       {error && (
-        <div className="mx-auto max-w-3xl rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm">
+        <div className="mx-auto max-w-3xl rounded-xl border border-warn/40 bg-warn/10 p-4 text-sm">
           {error}{" "}
           <Link to="/register" className="font-semibold text-brand underline">Create a free account</Link>
         </div>

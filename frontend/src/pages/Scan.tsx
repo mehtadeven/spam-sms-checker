@@ -5,9 +5,9 @@ import { useAuth } from "../hooks/useAuth";
 import type { ScanResponse } from "../lib/types";
 
 const LABEL_CHIP: Record<string, string> = {
-  SPAM: "bg-red-100 text-red-700",
-  HAM: "bg-emerald-100 text-emerald-700",
-  UNSURE: "bg-amber-100 text-amber-700",
+  SPAM: "bg-danger/15 text-rose-300",
+  HAM: "bg-brand/15 text-emerald-300",
+  UNSURE: "bg-warn/15 text-amber-300",
 };
 
 export function Scan() {
@@ -75,7 +75,7 @@ export function Scan() {
       </div>
 
       {!isPro && (
-        <div className="rounded-xl border border-blue-200 bg-blue-50 p-4 text-sm">
+        <div className="rounded-xl border border-brand/40 bg-brand/10 p-4 text-sm">
           You're on the <b>{user.trial_limit - user.trial_used} check trial</b>. Bulk scanning needs Pro.{" "}
           <span className="text-muted">(Demo mode: the Upgrade button completes a mock payment so you can see the full flow.)</span>
         </div>
@@ -87,7 +87,7 @@ export function Scan() {
         {!isPro && <p className="text-xs text-muted">Enable Pro to upload.</p>}
       </div>
 
-      {error && <div className="rounded-xl bg-red-50 p-4 text-sm text-red-700">{error}</div>}
+      {error && <div className="rounded-xl bg-danger/10 p-4 text-sm text-rose-300">{error}</div>}
 
       {data && (
         <div className="space-y-4">
@@ -127,7 +127,7 @@ export function Scan() {
 }
 
 function Stat({ label, value, tone }: { label: string; value: number; tone?: "red" | "green" | "amber" }) {
-  const color = tone === "red" ? "text-red-600" : tone === "green" ? "text-emerald-600" : tone === "amber" ? "text-amber-600" : "text-ink";
+  const color = tone === "red" ? "text-rose-300" : tone === "green" ? "text-emerald-300" : tone === "amber" ? "text-amber-300" : "text-ink";
   return (
     <div className="card">
       <div className={`text-2xl font-extrabold ${color}`}>{value.toLocaleString()}</div>
