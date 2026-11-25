@@ -1,5 +1,7 @@
 # Builds the React frontend in static demo mode (no backend; the trained model
 # runs in the browser from public/model.json) and publishes it to GitHub Pages.
+# Build and deploy are separate jobs (GitHub's recommended layout), so the
+# Pages artifact is fully registered before the deploy step looks for it.
 name: Deploy live demo
 
 on:
@@ -14,14 +16,11 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     defaults:
       run:
         working-directory: frontend
@@ -44,5 +43,13 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: frontend/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - id: deployment
         uses: actions/deploy-pages@v4
