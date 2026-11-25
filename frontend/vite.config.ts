@@ -10,6 +10,8 @@ import react from "@vitejs/plugin-react";
 // drop-in pure-JS build) so the bundle works even under that policy. On normal
 // machines you can remove the override for the faster native compiler.
 export default defineConfig({
+  // GitHub Pages serves the demo from /spam-sms-checker/ (set by the Pages workflow).
+  base: process.env.VITE_BASE || "/",
   plugins: [react()],
   server: {
     port: 5173,

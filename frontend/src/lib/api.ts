@@ -10,8 +10,15 @@ import type {
   ScanResponse,
   UserOut,
 } from "./types";
+import { loadWebModel, predictMessage } from "./localModel";
 
 const API_BASE = import.meta.env.VITE_API_BASE ?? "";
+
+// Static browser demo (GitHub Pages): no backend. Single-message analysis runs
+// on an in-browser copy of the trained model; server-only features are off.
+export const STATIC_DEMO = import.meta.env.VITE_STATIC_DEMO === "true";
+export const DEMO_UNAVAILABLE =
+  "This browser demo has no server, so accounts, inbox scans and billing are switched off. Run the full app locally to try them.";
 const TOKEN_KEY = "spamsms_token";
 const DEVICE_KEY = "spamsms_device_id";
 
@@ -41,6 +48,7 @@ export class ApiError extends Error {
 }
 
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
+  if (STATIC_DEMO) throw new ApiError(503, DEMO_UNAVAILABLE);
   const headers = new Headers(options.headers || {});
   if (!(options.body instanceof FormData)) headers.set("Content-Type", "application/json");
   const token = getToken();
@@ -59,7 +67,9 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
 
 export const api = {
   analyze: (text: string) =>
-    request<AnalyzeResponse>("/api/analyze", { method: "POST", body: JSON.stringify({ text }) }),
+    STATIC_DEMO
+      ? analyzeInBrowser(text)
+      : request<AnalyzeResponse>("/api/analyze", { method: "POST", body: JSON.stringify({ text }) }),
 
   register: (email: string, password: string) =>
     request<AuthResponse>("/api/auth/register", {
@@ -99,3 +109,13 @@ export const api = {
       headers: { "Content-Type": "text/csv" },
     }),
 };
+
+async function analyzeInBrowser(text: string): Promise<AnalyzeResponse> {
+  const model = await loadWebModel();
+  try {
+    const result = predictMessage(model, text.trim());
+    return { ...result, quota: { kind: "anonymous", remaining: null, limit: null, pays_wall: false } };
+  } catch (e) {
+    throw new ApiError(400, e instanceof Error ? e.message : "Could not analyze this message.");
+  }
+}

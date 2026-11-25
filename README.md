@@ -19,6 +19,8 @@
   <img src="https://img.shields.io/badge/network-zero%20egress-informational" alt="Zero egress"/>
 </p>
 
+<p align="center"><b>▶ <a href="https://mehtadeven.github.io/spam-sms-checker/">Try the live demo</a></b> — the real UI with the trained model running in your browser.</p>
+
 ---
 
 ## ✨ Features
@@ -33,6 +35,18 @@
 - **Tested & offline-guaranteed** — pytest suite includes a test that blocks all outbound sockets to prove the offline promise.
 
 ---
+
+## 🌐 Live demo
+
+**[mehtadeven.github.io/spam-sms-checker](https://mehtadeven.github.io/spam-sms-checker/)** — the real React UI, built in *static demo* mode (`VITE_STATIC_DEMO=true`). There is no server: [`scripts/export_web_model.py`](scripts/export_web_model.py) exports the trained TF-IDF + Naive Bayes model to `frontend/public/model.json`, and [`frontend/src/lib/localModel.ts`](frontend/src/lib/localModel.ts) reproduces `predict_message()` — verdict, spam estimate, learned clues and threat signals — in the browser. Accounts, inbox scan and billing need the FastAPI backend, so the demo hides them.
+
+[`.github/workflows/pages.yml`](.github/workflows/pages.yml) rebuilds and redeploys the demo on every push to `main`. To build it yourself:
+
+```bash
+python scripts/export_web_model.py          # only after changing data/sample.csv or the model
+cd frontend
+VITE_STATIC_DEMO=true VITE_BASE=/spam-sms-checker/ npm run build
+```
 
 ## 🚀 Quickstart
 
